@@ -34,4 +34,16 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MemberStatus status;
+
+    private Member(String email, String password, String nickname, Role role, MemberStatus status) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.role = role;
+        this.status = status;
+    }
+
+    public static Member create(String email, String password, String nickname) {
+        return new Member(email, password, nickname, Role.USER, MemberStatus.ACTIVE);
+    }
 }
